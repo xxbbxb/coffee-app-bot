@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newcoffee-bot
+  namespace: s700
+  labels:
+    app: newcoffee-bot
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: newcoffee-bot
+  template:
+    metadata:
+      labels:
+        app: newcoffee-bot
+    spec:
+      containers:
+      - name: bot
+        image: simonovbs/newcoffee-bot:0.1.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: COFFEE_TELEGRAM_APITOKEN
+          value: <>
+        - name: COFFEE_DB_DSN
+          value: <>
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "256Mi"
+        securityContext:
+          runAsUser: 2000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
