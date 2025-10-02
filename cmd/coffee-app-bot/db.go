@@ -1,7 +1,6 @@
 package main
 
 import (
-	"coffee-app-bot/pkg/router"
 	"context"
 	"database/sql"
 	"errors"
@@ -9,6 +8,8 @@ import (
 	"math/rand"
 	"strconv"
 	"time"
+
+	"github.com/xxbbxb/coffee-app-bot/pkg/router"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
@@ -209,7 +210,7 @@ func (db *Database) GetMatchingIdsWithVisibility(userId int64) ([]int64, []int, 
 		cast(ifnull((select settingValue from users_settings where userId = id and settingName = 'Visibility'),100) as unsigned) as visibility
 	FROM users
 	WHERE
-		id <> ? AND status > 1 AND id not in (select contactId from users_contacts where userId = ?);`, userId, userId)
+		id <> ? AND status > 1 AND id not in (select contactId from users_contacts where userId = ? and status >= 1);`, userId, userId)
 	if err != nil {
 		return nil, nil, err
 	}

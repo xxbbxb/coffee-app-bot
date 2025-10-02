@@ -8,7 +8,7 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/sirupsen/logrus"
 
-	"coffee-app-bot/pkg/router"
+	"github.com/xxbbxb/coffee-app-bot/pkg/router"
 )
 
 var log = logrus.New()

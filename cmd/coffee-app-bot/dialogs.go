@@ -1,10 +1,11 @@
 package main
 
 import (
-	"coffee-app-bot/pkg/router"
 	"context"
 	"fmt"
 	"strings"
+
+	"github.com/xxbbxb/coffee-app-bot/pkg/router"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
